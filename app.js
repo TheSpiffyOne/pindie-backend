@@ -1,10 +1,25 @@
 const express = require('express');
-// Слушаем 3000 порт
-const PORT = 3000;
+const bodyParser = require('body-parser');
+const path = require('path');
+const cookieParser = require("cookie-parser");
+const pagesRouter = require("./routes/pages")
+const apiRouter = require("./routes/apiRouter")
+
+const connectToDatabase = require('./database/connect');
+const cors = require('./middlewares/cors');
 
 const app = express();
+const PORT = 3001;
 
-app.listen(PORT, () => {
-    // Если всё работает, консоль покажет, какой порт приложение слушает
-    console.log(`App listening on port ${PORT}`)
-})
+connectToDatabase();
+
+app.use(
+  cors, 
+  cookieParser(),
+  bodyParser.json(),
+  pagesRouter,
+  apiRouter,
+  express.static(path.join(__dirname, 'public'))
+);
+
+app.listen(PORT);
