@@ -19,7 +19,7 @@ function usersController(req, res) {
 }
 
 const checkEmptyFields = async (req, res, next) => {
-  if (req.isVoteRequest) {
+  if (!req.isVoteRequest) {
     next();
     return;
   }
@@ -89,7 +89,7 @@ const checkIsCategoryExists = async (req, res, next) => {
 };
 
 const checkIfCategoriesAvaliable = async (req, res, next) => {
-  if (req.isVoteRequest) {
+  if (!req.isVoteRequest) {
     next();
     return;
   }
