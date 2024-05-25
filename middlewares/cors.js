@@ -1,6 +1,6 @@
 // Вместо нашего адреса вставь свой
 // Можно ещё не удалять адреса с localhost, но мы удалили для краткости
-const allowedCors = ["https://pindie-frontend.nomoredomainswork.ru","https://pindie-backend.nomoredomainswork.ru", "http://localhost:3000", "http://localhost:3001"];
+const allowedCors = ["https://pindie-frontend-spiffy.nomoredomainswork.ru","https://pindie-backend-spiffy.nomoredomainswork.ru", "http://localhost:3000", "http://localhost:3001"];
 
 function cors(req, res, next) {
   const { origin } = req.headers;
