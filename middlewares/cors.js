@@ -4,6 +4,7 @@ const allowedCors = ["https://pindie-frontend-spiffy.nomoredomainswork.ru","http
 
 function cors(req, res, next) {
   const { origin } = req.headers;
+  console.log("ok")
 
   if (allowedCors.includes(origin)) {
   res.header("Access-Control-Allow-Origin", origin);

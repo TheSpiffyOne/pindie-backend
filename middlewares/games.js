@@ -16,6 +16,7 @@ const findGameById = async (req, res, next) => {
       .findById(req.params.id)
       .populate("categories")
       .populate({path: "users", select: "-password"});
+      console.log("findGameById")
     next();
   } catch (error) {
     res.status(404).send({ message: "Игра не найдена" });
@@ -44,6 +45,7 @@ const findAllGames = async (req, res, next) => {
 const updateGame = async (req, res, next) => {
   try {
     req.game = await games.findByIdAndUpdate(req.params.id, req.body);
+    console.log(req.body)
     next();
   } catch (error) {
     res.status(400).send({ message: "Ошибка обновления игры" });
