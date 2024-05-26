@@ -1,6 +1,6 @@
 const allowedCors = [
-  "https://pindie-backend-spiffy.nomoredomainswork.ru/",
-  "https://pindie-frontend-spiffy.nomoredomainswork.ru/",
+  "https://pindie-backend-spiffy.nomoredomainswork.ru",
+  "https://pindie-frontend-spiffy.nomoredomainswork.ru",
   "http://localhost:3000",
   "http://localhost:3001",
 ];
