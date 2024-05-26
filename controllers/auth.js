@@ -1,5 +1,4 @@
 const users = require("../models/user.js");
-const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken");
 const path = require("path");
 
@@ -10,21 +9,17 @@ const login = (req, res) => {
     .findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, "some-secret-key", {
-        expiresIn: 3600
+        expiresIn: 3600,
       });
-      return { user, token };
+
+      res.status(200).send({
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        jwt: token,
+      });
     })
-    .then(({ user, token }) => {
-      res
-        .status(200)
-        .send({
-          _id: user._id,
-          username: user.username,
-          email: user.email,
-          jwt: token
-        });
-    })
-    .catch(error => {
+    .catch((error) => {
       res.status(401).send({ message: error.message });
     });
 };
@@ -45,4 +40,5 @@ const sendDashboard = (req, res) => {
   res.sendFile(path.join(__dirname, "../public/admin/dashboard.html"));
 };
 
+// Не забываем экспортировать функцию
 module.exports = { login, sendIndex, sendDashboard };
